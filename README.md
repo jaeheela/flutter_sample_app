@@ -1,6 +1,6 @@
 # flutter_sample_app
-
-A new Flutter project.
+<p>A new Flutter project.</p>
+<img src="https://github.com/jaeheela/flutter_sample_app/assets/107570140/8ce50ab6-2ba8-4017-a893-a4b7457cf6fd" alt="" align="center">
 
 ## Getting Started
 
