@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample_app/models/cat.dart';
 import 'package:flutter_sample_app/screens/detail_screen.dart';
+import 'package:flutter_sample_app/screens/upload_screen.dart';
 
 final List<Cat> cats = [
   Cat(
@@ -9,7 +10,7 @@ final List<Cat> cats = [
       title: "오늘의 귀염둥이",
       link: "assets/images/cat_00.jpg",
       likeCount: 1930,
-      replyCount: 6,
+      replyCount: 11,
       created: DateTime(2022, 11, 13, 22, 14, 53, 982)),
   Cat(
       id: "1",
@@ -17,7 +18,7 @@ final List<Cat> cats = [
       title: "오늘의 예쁜이",
       link: "assets/images/cat_01.jpg",
       likeCount: 1930,
-      replyCount: 6,
+      replyCount: 11,
       created: DateTime(2022, 11, 13, 22, 14, 53, 982)),
   Cat(
       id: "2",
@@ -25,7 +26,7 @@ final List<Cat> cats = [
       title: "오늘의 기쁨이",
       link: "assets/images/cat_02.jpg",
       likeCount: 1930,
-      replyCount: 6,
+      replyCount: 11,
       created: DateTime(2022, 11, 13, 22, 14, 53, 982)),
   Cat(
       id: "3",
@@ -33,7 +34,7 @@ final List<Cat> cats = [
       title: "오늘의 행복이",
       link: "assets/images/cat_03.jpg",
       likeCount: 1930,
-      replyCount: 6,
+      replyCount: 11,
       created: DateTime(2022, 11, 13, 22, 14, 53, 982)),
   Cat(
       id: "4",
@@ -41,7 +42,7 @@ final List<Cat> cats = [
       title: "오늘의 슬픔이",
       link: "assets/images/cat_04.jpg",
       likeCount: 1930,
-      replyCount: 6,
+      replyCount: 11,
       created: DateTime(2022, 11, 13, 22, 14, 53, 982)),
 ];
 
@@ -64,7 +65,14 @@ class _ListScreenState extends State<ListScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.camera_alt),
-            onPressed: () {},
+
+            /// 카메라 클릭 시 업로드화면으로 이동
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (_) => const UploadScreen(),
+              );
+            },
           ),
         ],
       ),
@@ -88,7 +96,7 @@ class _ListScreenState extends State<ListScreen> {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                  builder: (context) => DetailScreen(cat: cats[index]),
+                builder: (context) => DetailScreen(cat: cats[index]),
               ),
             );
           },

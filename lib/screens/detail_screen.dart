@@ -7,7 +7,13 @@ final List<String> replies = [
   "저 근엄한 눈빛!",
   "저 근엄한 눈빛!",
   "저 근엄한 눈빛!",
-  "저 근엄한 눈빛!"
+  "저 근엄한 눈빛!",
+  "저 근엄한 눈빛!",
+  "저 근엄한 눈빛!",
+  "저 근엄한 눈빛!",
+  "저 근엄한 눈빛!",
+  "저 근엄한 눈빛!",
+  "저 근엄한 눈빛!",
 ];
 
 class DetailScreen extends StatefulWidget {
@@ -20,6 +26,9 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  /// => 좋아요 누른 유무
+  bool isLiked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,95 +39,161 @@ class _DetailScreenState extends State<DetailScreen> {
 
       ///Body
       body: SafeArea(
-        child: ListView(
-          ///padding
-          padding: const EdgeInsets.only(
-            top: 10.0,
-            left: 10.0,
-            right: 10.0,
-          ),
-
-          ///scroll
-          physics: const ClampingScrollPhysics(),
-
+        child: Stack(
           children: [
-            ///1. image ratio
-            AspectRatio(
-              aspectRatio: 1,
-              child: Image.asset(
-                widget.cat.link,
-                fit: BoxFit.cover,
+            ///Stack의 첫번째 요소 - ListView()
+            ListView(
+              ///1. padding
+              padding: const EdgeInsets.only(
+                top: 10.0,
+                left: 10.0,
+                right: 10.0,
               ),
-            ),
 
-            ///2. row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ///2. scroll
+              physics: const ClampingScrollPhysics(),
+
+              ///3. children
               children: [
-                ///cat name
-                Text(
-                  widget.cat.name,
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                    color: Color(0xFF777777),
+                ///3-1. image ratio
+                AspectRatio(
+                  aspectRatio: 1,
+                  child: Image.asset(
+                    widget.cat.link,
+                    fit: BoxFit.cover,
                   ),
                 ),
-                ///like icon
+
+                ///3-2. row
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                      padding: EdgeInsets.zero,
-                      icon: Icon(
-                        Icons.thumb_up_outlined,
+                    ///3-2-1. cat name
+                    Text(
+                      widget.cat.name,
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                        color: Color(0xFF777777),
                       ),
-                      onPressed: () {},
                     ),
-                    Text(widget.cat.likeCount.toString())
+                    ///3-2-2. like icon
+                    Row(
+                      children: [
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          icon: Icon(
+                            /// => 좋아요 유무 상태관리 - setState((){})
+                            //Icons.thumb_up
+                            isLiked ? Icons.thumb_up : Icons.thumb_up_outlined
+                          ),
+                          onPressed: (){
+                            /// => setState((){}) : 함수를 입력받는 함수, setState의 입력으로 주어지는 함수에서 변수의 값을 변화시킴
+                            setState(() {
+                              isLiked = !isLiked;
+                            });
+                          },
+                        ),
+                        Text(widget.cat.likeCount.toString())
+                      ],
+                    ),
                   ],
+                ),
+
+                ///3-3. text
+                Text(
+                  "댓글 ${widget.cat.replyCount}개",
+                ),
+
+                ///3-4. List.generate
+                ...List.generate(
+                    ///3-4-1. 인자1
+                    replies.length,
+                    ///3-4-2. 인자2
+                    (int index) => Padding(
+                      ///3-4-2-1. padding
+                      padding: const EdgeInsets.only(
+                        top: 10.0,
+                      ),
+                      ///3-4-2-2. child
+                      child: Row(
+                        children: [
+                          ///3-4-2-2-1. user name
+                          const Text(
+                            "익명",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          ///3-4-2-2-2. padding left
+                          const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 3.0)),
+                          ///3-4-2-2-3. replies
+                          Text(
+                            replies[index],
+                          ),
+                        ],
+                      ),
+                    ),
+                ),
+
+                ///3-5. padding
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10.0,
+                  ),
+                  child: Text(
+                    "${widget.cat.created.year}년 ${widget.cat.created.month}월 ${widget.cat.created.day}일",
+                    style: const TextStyle(
+                      color: Color(0xFFAAAAAA),
+                    ),
+                  ),
                 ),
               ],
             ),
 
-            ///2. text
-            Text(
-              "댓글 ${widget.cat.replyCount}개",
-            ),
+            ///Stack의 두번째 요소 - Align() : 댓글작성 폼
+            Align(
+              ///1. alignment
+              alignment: Alignment.bottomCenter,
 
-            ///3. List.generate
-            ...List.generate(
-                replies.length,
-                (int index) => Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10.0,
-                  ),
-                  child: Row(
-                    children: [
-                      ///user name
-                      const Text(
-                        "익명",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      ///padding left
-                      const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 3.0)),
-                      ///replies
-                      Text(
-                        replies[index],
-                      ),
-                    ],
-                  ),
+              ///2. Padding
+              child: Padding(
+
+                ///2-1. padding
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10.0,
                 ),
-            ),
 
-            ///4. padding
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 10.0,
-              ),
-              child: Text(
-                "${widget.cat.created.year}년 ${widget.cat.created.month}월 ${widget.cat.created.day}일",
-                style: const TextStyle(
-                  color: Color(0xFFAAAAAA),
+                ///2-2. Container
+                child: Container(
+
+                  ///2-2-1. padding
+                  padding: const EdgeInsets.only(
+                    top:10.0,
+                  ),
+
+                  ///2-2-2. color
+                  color: Theme.of(context).canvasColor,
+
+                  ///2-2-3. TextField
+                  child: const TextField(
+
+                    ///2-2-3-1. autocorrect
+                    autocorrect: false,
+
+                    ///2-2-3-2. decoration
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(
+                        top:5.0,
+                        bottom:5.0,
+                        left:10.0,
+                      ),
+                      border: OutlineInputBorder(),
+                      hintText: "댓글 작성",
+                      suffixIcon: Icon(
+                        Icons.send,
+                        color: Colors.blue,
+                      )
+                    ),
+                  ),
                 ),
               ),
             ),
