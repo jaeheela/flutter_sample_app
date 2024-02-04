@@ -101,11 +101,11 @@ class MyHomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          /// context.watch<State>
+          /// context.watch<State>()
           /// => Provider.of<State>(context)와 동일
           /// => 빌드 메서드 내부에서만 사용 가능, notifyListeners()가 호출되면 위젯 리빌드됨
           /// => 해당 상태가 변경될 때마다 UI가 업데이트 되어야 하는 경우에 사용
-          /// context.read<State>
+          /// context.read<State>()
           /// => Provider.of<State>(context, listen:false)와 동일
           /// => notifyListeners()가 호출되더라도 위젯 리빌드되지 않음
           /// => 해당 상태가 변경될 때마다 UI가 업데이트 필요 없는 경우, 상태를 변경하기 위한 메서드를 호출하는 경우에 사용
