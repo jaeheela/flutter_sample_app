@@ -4,16 +4,17 @@ import '../models/cat.dart';
 
 final List<String> replies = [
   "저 근엄한 눈빛!",
-  "저 근엄한 눈빛!",
-  "저 근엄한 눈빛!",
-  "저 근엄한 눈빛!",
-  "저 근엄한 눈빛!",
-  "저 근엄한 눈빛!",
-  "저 근엄한 눈빛!",
-  "저 근엄한 눈빛!",
-  "저 근엄한 눈빛!",
-  "저 근엄한 눈빛!",
-  "저 근엄한 눈빛!",
+  "어느 고양이별에서 왔니?",
+  "집사로서 주인님께 충성할 뿐...",
+  "냥이님 날 가져요~~",
+  "왕족 고양이라서 오히려 좋아~!",
+  "중요한건 꺾이지 않는 냥미모!",
+  "저 근엄한 눈빛!2",
+  "어느 고양이별에서 왔니?2",
+  "집사로서 주인님께 충성할 뿐...2",
+  "냥이님 날 가져요~~2",
+  "왕족 고양이라서 오히려 좋아~!2",
+  "중요한건 꺾이지 않는 냥미모!2",
 ];
 
 class DetailScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  /// => 좋아요 누른 유무
+  /// => 좋아요 누른 유무 (state변수)
   bool isLiked = false;
 
   @override
@@ -82,12 +83,10 @@ class _DetailScreenState extends State<DetailScreen> {
                         IconButton(
                           padding: EdgeInsets.zero,
                           icon: Icon(
-                            /// => 좋아요 유무 상태관리 - setState((){})
                             //Icons.thumb_up
                             isLiked ? Icons.thumb_up : Icons.thumb_up_outlined
                           ),
                           onPressed: (){
-                            /// => setState((){}) : 함수를 입력받는 함수, setState의 입력으로 주어지는 함수에서 변수의 값을 변화시킴
                             setState(() {
                               isLiked = !isLiked;
                             });

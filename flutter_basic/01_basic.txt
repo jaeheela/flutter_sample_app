@@ -1,0 +1,65 @@
+# CHAPTER 1 플러터 여정 시작하기
+
+1.1 플러터, 너는 누구니?
+- 3.0 이후로 운도우, 맥, 리눅스, ios, 안드로이드 웹 6개의 플랫폼 공식적으로 지원함
+- 다트3
+- c 패밀리 문법 사용(c, c++, 자바, js)
+- UI작성법 : 위젯 조합
+- 3.0 이후로 파이어베이스(구글의 솔루션)의 공식적 지원 → 플러터파이어 라이브러리 이용(앱 푸시 알림, 데이터베이스, 이미지 호스팅, 통계 등)
+- 플러터의 특징
+    - 크로스 플랫폼 방식으로 앱 개발 가능
+    - 선언형 사용자 인터페이스 : 데이터만 변경해주면 자동으로 화면 변경됨 -> 변화 일으키는 데이터(상태)
+    - 다트로 작성
+    - 시스템의 UI 라이브러리에 의존 하지 않고, 머티리얼, 쿠퍼티노 등의 내장 위젯을 픽셀 단위로 직접 그림
+    - 핫 리로드 : 앱의 재시작 없이 코드상의 변겨사항을 반영할 수 있는 기능 (디버그 모드에서 사용 가능) -> 라이브러리를 다시 불러오지만, 코드를 재실행하지는 않음
+1.2 개발환경 설정하기 - 공통
+- homebrew 설치(맥 운영체제에서 환경에서 각종 라이브러리를 설치하기 위한 라이브러리)
+- 플러터 SDK 설치
+- visual studio code 설치 > 다트 및 플러터 플러그인 설치 (Dart extension, Flutter extension)
+1.3 개발환경 설정하기 - iOS(앱)
+- 맥 운영체제 필요
+- xcode 설치 > xcode  라이센스 동의
+- cocoapod 설치
+1.4 개발환경 설정하기 - 안드로이드(앱)
+- 맥, 윈도우 모두 가능
+- 안드로이드 스튜디오 설치
+- 안드로이드 툴체인 설치
+    - 애뮬레이터를 실행하기 위해 안드로이드 툴 체인 설치 필요
+    - preferences > Android SDK > 최신버전의 안드로이드 API > ok
+    - android sdk command-line tools 체크 > apply
+- flutter doctor —android-licenses 후 모두 동의
+1.5 개발환경 점검하기
+- flutter doctor
+1.6 프로젝트 생성하기
+- flutter create flutter_sample_app
+- pubspec.yaml : 프로젝트의 기본 경로,프로젝트가 사용하고 있는 프레임워크/라이브러리, 프로젝트가 사용중인 파일
+    - name : flutter create [name]
+    - description : 현재 프로젝트의 설명
+    - publish_to : 오픈소스 라이브러리로 공개할지 여부
+    - version : x,y,z+a(xyz : 빌드이름, a:빌드넘버)
+    - environment : 다트 기준의 SDK 버전 지정
+    - dependencies : 프로젝트에 사용하는 라이브러이 또는 프레임워크
+
+<ios 시뮬레이터로 데모 앱 실행>
+- open -a simulator
+- flutter run (프로젝트 경로 내에서 실행)
+
+<안드로이드 시뮬레이터로 데모 앱 실행>
+- 안드로이드 스튜디오 실행 > virtual device manager > create device
+    > select hardware (phone pixel 3) > system image (API 30) > android virtual devices(AVD) name 설정
+    > actions 클릭해 애뮬레이터 실행
+- flutter run (프로젝트 경로 내에서 실행)
+
+<현재 폴더 내 visual Studio Code 실행>
+code .
+
+
+
+flutter doctor : 플러터 개발환경이 설치되어 있는지 확인
+flutter create [패키지명] : 새플러터 패키지 생성
+flutter pub get : 플러터 패키지가 의존하는 패키지들 전부 다운로드(pubspec.yaml 명시된 의존성들 기준)
+flutter pub add [패키지명] : 플러터 패키지에 새로운 의존성 추가
+flutter run : 플러터 프로그램 실행
+flutter build [빌드 명령어] : 플러터 프로그램을 특정한 플랫폼에 맞게 빌드
+flutter test : 해당 패키지에 존재하는 테스트 코드 실행
+flutter upgrade : 현재 설치된 플러터 SDK의 최신 버전이 존재한다면 최신 버전으로 업그레이드

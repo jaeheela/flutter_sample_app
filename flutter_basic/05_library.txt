@@ -1,0 +1,11 @@
+- 오픈 소스 라이브러리 이용법
+ex) js/Node.js : NPM
+ex) Python : PYPI
+ex) Dart/Flutter : pub.dev
+
+
+이미지 픽커 라이브러리
+- 시스템 갤러리에 존재하는 이미지 사용 가능하게 해주는 라이브러리
+- flutter pub add image_picker
+- ios 는 갤러리 사용 권한 필요
+
