@@ -16,7 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider<AuthState>(create: (_) => AuthState(),)
+      ChangeNotifierProvider<AuthState>(create: (_) => AuthState()),
     ],
     child: const MyApp(),
   ));

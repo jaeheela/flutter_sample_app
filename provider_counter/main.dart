@@ -1,7 +1,3 @@
-// Copyright 2019 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -9,14 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
 
+/// ChangeNotifierProvider
+/// => 하위 위젯들에게 ChangeNotifier 인스턴스를 제공해주는 위젯
 void main() {
   setupWindow();
-  runApp(
+  runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context) => Counter(),
       child: const MyApp(),
     ),
-  );
+  ]));
 }
 
 const double windowWidth = 360;
@@ -37,14 +35,16 @@ void setupWindow() {
     });
   }
 }
+/// ChangeNotifier
+/// => 구독자에게 변경 알림을 제공( 무언가가 ChangeNotifier에 속하면 변경사항 알릴 수 있음)
+/// => ChangeNotifier에서 Counter의 상태 관리를 담당
+/// => 앱의 UI의 변경과 관련된 모델 변경이 일어날 때 : notifyListeners() 호출
+/// => Counter 클래스 내의 다른 코드들은 모델 그 자체와 비지니스 로직임
 
-/// Simplest possible model, with just one field.
-///
-/// [ChangeNotifier] is a class in `flutter:foundation`. [Counter] does
-/// _not_ depend on Provider.
+/// 개별 상태 클래스
 class Counter with ChangeNotifier {
   int value = 0;
-
+  /// 상태변경함수
   void increment() {
     value += 1;
     notifyListeners();
@@ -81,6 +81,15 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('You have pushed the button this many times:'),
+
+            /// Consumer (최대한 깊숙한 안쪽에 위치하기 - 리빌드 자주 사용 x)
+            /// => Counter 모델은 맨 위 ChangeNotifierProvider 선언을 통해 앱 내의 위젯에 공급됨
+            /// => 그러므로 바로 사용 가능, 사용 시 Consumer 위젯 이용
+            /// => Consumer.builder() : ChangeNotifier 가 변경 시 호출되는 함수
+            /// => 즉, 모델에서 notifyListeners() 메소드를 호출하면 이에 대응하는 Consumer 위젯들의 모든 builder가 호출됨
+            /// => context : 모든 빌드 메서드에서 볼 수 있는 Buildcontext
+            /// => counter : ChangeNotifier의 인스턴스, 우리가 필요했던 것, 해당 데이터로 UI가 어떻게 보일지 선언형으로 작성 가능
+            /// => child : 최적화에 사용
             Consumer<Counter>(
               builder: (context, counter, child) => Text(
                 '${counter.value}',
