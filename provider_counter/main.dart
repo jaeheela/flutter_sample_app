@@ -9,12 +9,12 @@ import 'package:window_size/window_size.dart';
 /// => 하위 위젯들에게 ChangeNotifier 인스턴스를 제공해주는 위젯
 void main() {
   setupWindow();
-  runApp(MultiProvider(providers: [
+  runApp(
     ChangeNotifierProvider(
       create: (context) => Counter(),
       child: const MyApp(),
     ),
-  ]));
+  );
 }
 
 const double windowWidth = 360;
