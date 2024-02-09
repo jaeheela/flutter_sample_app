@@ -1,0 +1,51 @@
+파이어베이스
+- 구글에서 제공하는 모바일 및 웹 개발 도구
+- 앱에 필요한 다양한 백엔드 기능을 쉽게 추가 가능
+- 대표적 : 인증(로그인), 데이터베이스, 스토리지(저장공간)
+- => 배울 것 ) 파이어베이스 프로젝트를 생성 -> ios 및 안드로이드 앱을 추가 -> 다양한 활용 사례 다룸
+
+
+
+[파이어베이스 콘솔]
+1. 파이어베이스 프로젝트 생성
+파이어베이스 콘솔에 접속 > [프로젝트만들기] 클릭 > 프로젝트 이름 지정: jj-on-fire > 애널리틱스 사용 해제 > [프로젝트만들기] 클릭
+
+2. firebase.tools 실행
+curl -sL https://firebase.tools | bash 혹은 [독립 실행형 바이너리] 설치
+
+3. 파이어베이스에 로그인
+firebase login
+firebase projects:list (파이어베이스 프로젝트 리스트 확인 및 만들었던 프로젝트 있는지 확인)
+
+4. 프로젝트 루트에서 firebase_core 라이브러리 설치
+cd C:\Users\jhla4\flutter_sample_app
+flutter pub add firebase_core
+
+5. 프로젝트 루트에서 FlutterFire CLI 설치
+cd C:\Users\jhla4\flutter_sample_app
+dart pub global activate flutterfire_cli
+dart pub global deactivate flutterfire_cli
+
+6. 프로젝트 루트에서 FlutterFire 초기화
+flutterfire configure --project=[project name]
+firebase_options.dart 생성됨
+
+7. lib/main.dart에 파이어베이스 초기화 코드 추가
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+8. android/build.gradle에 Google Services Gradle 플러그인 의존성 코드 추가
+- classpath "com.google.gms:google-services:4.3.10"
+- Firebase 프로젝트와의 연동 및 설정에 필요한 작업을 자동으로 처리
+
+9. android/app/build.gradle에 플러그인 코드 추가
+- id "com.google.gms.google-services"
+- Firebase 서비스를 사용하기 위한 Google Services 플러그인을 프로젝트에 적용
+- Firebase 프로젝트와 연동되어 필요한 설정을 자동으로 처리해주는 역할
+
+10. 파이어베이스 사용가능한 플러터 플러그인
+https://firebase.google.com/docs/flutter/setup?hl=ko&authuser=0&_gl=1*suu5sb*_ga*MTI5ODc2NDAxMC4xNzA3NDg4NDY5*_ga_CW55HF8NVT*MTcwNzQ5MTM4MC4yLjEuMTcwNzQ5MzgwMS42MC4wLjA.&platform=ios#available-plugins
+flutter pub add PLUGIN_NAME
+flutterfire configure (Flutter 앱의 Firebase 구성이 최신 상태인지 확인하고 Android의 Crashlytics 및 Performance Monitoring의 경우 필수 Gradle 플러그인이 앱에 추가됨)
+flutter run
