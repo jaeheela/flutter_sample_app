@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample_app/models/cat.dart';
+import 'package:flutter_sample_app/screens/animated_route.dart';
 import 'package:flutter_sample_app/screens/login_screen.dart';
 import 'package:flutter_sample_app/screens/search_screen.dart';
 import 'package:flutter_sample_app/screens/signup_screen.dart';
@@ -231,9 +232,15 @@ class _ListScreenState extends State<ListScreen> {
            */
           onTap: () {
             Navigator.of(context).push(
+                ///화면이 옆으로 등장하는 내비게이션 구현, begin,curve 변수 조작 시 다양항 애니메이션 효과 가능
+                animatePageRoute(
+                  pageBuilder: (context, animation, secondaryAnimation) => DetailScreen(cat: cats[index]),
+                )
+              /*
               MaterialPageRoute(
                 builder: (context) => DetailScreen(cat: cats[index]),
               ),
+              */
             );
           },
           child: Image.asset(

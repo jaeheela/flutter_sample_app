@@ -37,6 +37,10 @@ class MyLogin extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
+                  /// context: 화면의 상태 및 정보에 접근할 수 있는 Flutter의 BuildContext 객체
+                  /// => pushReplacement: 현재 화면을 교체하고 새로운 화면으로 이동하는 메서드
+                  /// => /catalog': 이동할 화면의 경로 또는 라우트 이름, 이는 앱의 라우팅 구조에 따라 정의
+                  /// => 전체 코드는 현재 화면을 '/catalog'로 교체하고 이동
                   context.pushReplacement('/catalog');
                 },
                 style: ElevatedButton.styleFrom(
