@@ -33,3 +33,11 @@ https://couldi.tistory.com/40
 - 예제로 provider 사용법 익히기
 https://github.com/flutter/samples/tree/main/provider_shopper
 https://github.com/flutter/samples/tree/main/provider_counter
+
+
+- 상태 사용 시 고려점
+1. UI의 리빌드가 필요 없는 경우, 상태가 아닌 일반 변수로 작성
+2. 정확히 동일한 시점에 변경되어야 하는 여러 개의 상태는 묶어서 리스트(List), 맵(Map) 또는 클래스(Class) 구조로 작성
+정확히 동일한 시점에 변경되어야 하는 여러 개의 상태가 별개로 존재하는 경우, 여러번의 리빌드가 불필요하게 발생할 수 있으니 상태 합쳐서 관리하기
+3. 특정 상태에서 파생된 상태는 별도의 상태로 만들지 않기
+ex. "count 에서 1을 더한 값" (특정 상태에서 파생된 상태) 은 기존에 있는 상태를 이용해 도출하는 게 적절함

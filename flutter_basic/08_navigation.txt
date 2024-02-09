@@ -1,0 +1,24 @@
+Navigation
+- 모바일 앱 개발 : 화면과 화면 사이를 이동한다
+- 웹사이트 : 페이지 간 이동( 페이지는 각각의 URL 주소 부여, = 즉 URL 주소가 바뀌는 것)
+
+모바일 앱에서의 페이지 간 이동 구현법
+1. 내비게이션으로 구현
+2. Push and Pop 방식 - stack의 원리
+    - 맨 처음 로드화면은 일반적으로 고정
+    - 새로운 화면 불러올 시 화면 위에 화면을 하나씩 쌓음(Push)
+    - 뒤로가기 버튼 누를 시 맨 위에 쌓인 화면부터 하나씩 제거(Pop)
+
+
+Stack에 쌓이는 단위 - 화면 - 라우트(Route)
+
+Navigator.of(context).push(위젯..?);
+Navigator.of(context).push(MaterialPageRoute);
+Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailScreen(cat: cats[index]),),);
+=> psuh가 위젯을 직접 집어넣는 게 아니라 Route라고 하는 Navigator에서 쓰는 특수한 단위를 집어넣음
+
+Navigator 위젯
+- Navigator는 반드시 Navigator.of(context)와 같이 사용하기
+- Navigator 위젯 자체의 특징으로, 반드시 context가 필요 (=inherited 위젯)
+- context를 통해 현재 Navigator를 호출하는 위젯이 위젯 트리에서 어느 위치에 있는 파악함
+- 잘못된 context가 들어갈 경우 엉뚱한 동작 발생

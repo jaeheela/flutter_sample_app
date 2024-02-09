@@ -36,9 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // 상태 변경
-    // 주의: setState()를 호출할 수 있는 타이밍 아님,
-    // 하지만 UI가 아직 생성 전이므로 여기서 수정한 값들은 UI에 반영됨
+    /// 상태 변경
+    /// 주의: setState()를 호출할 수 있는 타이밍 아님,
+    /// 하지만 UI가 아직 생성 전이므로 여기서 수정한 값들은 UI에 반영됨
     color="블루";
   }
   @override

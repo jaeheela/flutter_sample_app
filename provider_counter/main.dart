@@ -42,6 +42,9 @@ void setupWindow() {
 /// => Counter 클래스 내의 다른 코드들은 모델 그 자체와 비지니스 로직임
 
 /// 개별 상태 클래스
+/// => 상태값 (_로 시작하는 private 프로퍼티)
+/// => 상태값 getter (변수명 앞에 get 붙음)
+/// => 상태 변경 함수 (반드시 notifyListeners()를 호출)
 class Counter with ChangeNotifier {
   int value = 0;
   /// 상태변경함수
